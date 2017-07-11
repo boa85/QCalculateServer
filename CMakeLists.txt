@@ -15,7 +15,7 @@ set(CMAKE_AUTOMOC ON)#Q_OBJECT - для использования в проек
 find_package(Qt5Core REQUIRED)# по аналогии с *.pro QT += gui core
 find_package(Qt5Network REQUIRED)#Сеть
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp CLI/src/ArgumentParser.cpp CLI/include/ArgumentParser.hpp)
 add_executable(QCalculateServer ${SOURCE_FILES})
 target_link_libraries(QCalculateServer Qt5::Core Qt5::Network
         ${Boost_LIBRARIES})# с которыми будем линковать бинарник

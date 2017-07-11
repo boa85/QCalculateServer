@@ -1,9 +1,8 @@
 cmake_minimum_required(VERSION 3.7)
 project(QCalculateServer)
 
-set(CMAKE_CXX_STANDARD 14)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_FLAGS "-O0 -pedantic-errors -Wextra -Wall -Winit-self -Wold-style-cast -Woverloaded-virtual -Wuninitialized -Wmissing-declarations -Wno-ignored-qualifiers -Wno-unused-parameter")
 find_package(Boost 1.58.0 COMPONENTS regex serialization program_options signals)
 if (NOT Boost_FOUND)

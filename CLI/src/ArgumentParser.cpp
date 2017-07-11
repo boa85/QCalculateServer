@@ -62,31 +62,34 @@ namespace calc_server {
 
         void ArgumentParser::prepareSettings(const boost::program_options::variables_map &vm,
                                              const std::string &listenAddresses) {
-            ServerSettings settings;
 
+            LISTEN_ADDRESSES addresses;
+            unsigned int port;
+            unsigned int connections;
             if (listenAddresses == config::ANY) {
-                settings.addresses = LISTEN_ADDRESSES::ANY;
+                addresses = LISTEN_ADDRESSES::ANY;
             } else if (listenAddresses == config::LOCAL_HOST) {
-                settings.addresses = LISTEN_ADDRESSES::LOCAL_HOST;
+                addresses = LISTEN_ADDRESSES::LOCAL_HOST;
             } else if (listenAddresses == config::ANY_IPV6) {
-                settings.addresses = LISTEN_ADDRESSES::ANY_IPV6;
+                addresses = LISTEN_ADDRESSES::ANY_IPV6;
             } else if (listenAddresses == config::ANY_IPV4) {
-                settings.addresses = LISTEN_ADDRESSES::ANY_IPV4;
+                addresses = LISTEN_ADDRESSES::ANY_IPV4;
             } else {
-                settings.addresses = LISTEN_ADDRESSES::ANY;
+                addresses = LISTEN_ADDRESSES::UNKNOWN;
+                throw std::invalid_argument("invalid listen addresses value");
             }
             if (vm.count(config::PORT)) {
-                auto port = vm[config::PORT].as<unsigned>();
-                (port > config::MIN_PORT) ? settings.port = port
-                                          : throw std::invalid_argument("invalid port value, see help");
+                port = vm[config::PORT].as<unsigned>();
+                if (port < config::MIN_PORT) {
+                    throw std::invalid_argument("invalid listen port value");
+                }
             }
             if (vm.count(config::MAX_PENDING_CONNECTIONS)) {
-                auto connections = vm[config::MAX_PENDING_CONNECTIONS].as<unsigned>();
-                (connections > 0) ? settings.maxPendingConnections = connections
-                                  : settings.maxPendingConnections = 30;//30 it is not magic number,
+                connections = vm[config::MAX_PENDING_CONNECTIONS].as<unsigned>();
+                if (connections <= 0) connections = 30;//30 it is not magic number,
                 // this is the default value for QTcpServer
             }
-            serverSettings(settings);
+            serverSettings(std::make_tuple(addresses, port, connections));
         }
     }
 }

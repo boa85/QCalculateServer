@@ -31,11 +31,7 @@ namespace calc_server {
          * @brief MIN_PORT - All ports < 1000 were used by the OS and not available
          */
         const unsigned int MIN_PORT = 1001;
-        struct ServerSettings {
-            unsigned maxPendingConnections;
-            unsigned port;
-            LISTEN_ADDRESSES addresses;
-        };
+
     }
 }
 

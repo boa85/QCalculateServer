@@ -27,7 +27,7 @@ namespace calc_server {
             /**
              * использовал бустовские сигналы для того, чтобы не смешивать все в одну кучу
              */
-            boost::signals2::signal<void(const ServerSettings &settings)> serverSettings;
+            boost::signals2::signal<void(std::tuple<LISTEN_ADDRESSES, unsigned int, unsigned int>)> serverSettings;
 
         private:
             /**

@@ -3,6 +3,7 @@
 #pragma once
 #include <QTcpServer>
 #include "../../config/include/config.hpp"
+#include "client_socket.hpp"
 
 using namespace calc_server;
 using namespace config;
@@ -12,16 +13,20 @@ namespace calc_server {
         {
         Q_OBJECT
         public:
-            explicit TcpServer(QObject *parent = 0);
+            explicit TcpServer(QObject *parent = Q_NULLPTR);
 
+            virtual ~TcpServer();
         signals:
-            void newClient(const QVariantList &data);
+
+            void calculationsResult(const QString &result);
 
         public slots:
 
             void startListen(std::tuple<LISTEN_ADDRESSES, unsigned int, unsigned int> settings);
         private:
             void incomingConnection(qintptr socketId);
+
+            QMap<quintptr, ClientSocket *> socketMap_;
         };
     }
 }

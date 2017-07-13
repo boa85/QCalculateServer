@@ -11,19 +11,38 @@ namespace calc_server {
         {
         Q_OBJECT
         public:
-            explicit ClientSocket(QObject *parent = 0);
+            /**
+             * @brief ClientSocket - default constructor
+             * @param parent
+             */
+            explicit ClientSocket(QObject *parent = Q_NULLPTR);
+
             virtual ~ClientSocket();
 
+            /**
+             * @brief socketName
+             * @return  getter
+             */
+            const QString socketName() const { return socketName_; }
+
+            /**
+             * @brief setSocketName - setter
+             * @param socketName new socketName
+             */
+            void setSocketName(const QString &socketName) { socketName_ = socketName; }
         signals:
-            void newClient(const QVariantList &data);
+
+            void newCalculateExpression(const QString &expression);
+
             void disconnects(const QString &name);
 
         public slots:
+
         private slots:
             void readClient();
         private:
             quint16 nextBlockSize_;
-            QString sockeName_;
+            QString socketName_;
         };
 
     }

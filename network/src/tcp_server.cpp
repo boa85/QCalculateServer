@@ -1,6 +1,7 @@
 #include "../include/tcp_server.hpp"
 #include <QTime>
 #include <QDataStream>
+#include <iostream>
 
 namespace calc_server {
     namespace network {
@@ -31,30 +32,23 @@ namespace calc_server {
             auto port = std::get<1>(settings);
             auto maxConnections = std::get<2>(settings);
             setMaxPendingConnections(maxConnections);
+            QHostAddress address;
             switch (addresses) {
                 case LISTEN_ADDRESSES::ANY:
-                    if(!listen(QHostAddress::Any, port)) {
-
-                    }
+                    address = QHostAddress::Any;
                     break;
                 case LISTEN_ADDRESSES::LOCAL_HOST:
-                    if(!listen(QHostAddress::LocalHost, port)) {
-
-                    }
+                    address = QHostAddress::LocalHost;
                     break;
                 case LISTEN_ADDRESSES::ANY_IPV4:
-                    if(!listen(QHostAddress::AnyIPv4, port)) {
-
-                    }
+                    address = QHostAddress::AnyIPv4;
                     break;
                 case LISTEN_ADDRESSES::ANY_IPV6:
-                    if(!listen(QHostAddress::AnyIPv6, port)) {
-
-                    }
+                    address = QHostAddress::AnyIPv6;
                     break;
-                case LISTEN_ADDRESSES::UNKNOWN:
-                    throw std::invalid_argument("unknown addresses value");
             }
+            listen(address, (quint16) port) ? qDebug() << QString("server started port %1").arg(serverPort()) :
+            qWarning() << QString("Failed to bind to port, %1 ").arg(errorString()) << "\n";
         }
 
         TcpServer::~TcpServer() {

@@ -1,6 +1,9 @@
 #include <iostream>
+#include "CLI/include/ArgumentParser.hpp"
 
+using namespace calc_server;
+using namespace parser;
 int main(int argc, char *argv[]) {
-    std::cout << "Hello, World!" << std::endl;
+    ArgumentParser argumentParser(argc, argv);
     return 0;
 }

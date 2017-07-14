@@ -22,7 +22,7 @@ namespace calc_server {
 
         void ArgumentParser::initDescriptions() {
             generalDescription_.add_options()
-                    ("help,h", "general server options: listen addresses, port, max pending connections\n"
+                    ("help,h", "server options: listen addresses, port, max pending connections\n"
                             "e.g ./QCalculateServer -t start -p 7777 -a any -m 30")
                     ("type,t", po::value<std::string>(&taskType_), "start")
                     ("addresses,a", po::value<std::string>(&addresses_), "listen addresses: any, anyv4, anyv6, localhost")
@@ -61,9 +61,6 @@ namespace calc_server {
                 if (maxPendingConnections_ <= 0) {
                     maxPendingConnections_ = config::DEFAULT_MAX_PENDING_CONNECTIONS;
                 }
-            } else if (taskType_==config::HELP) {
-                std::cout << "GENERAL HELP" << std::endl << generalDescription_;
-                return;
             } else {
                 std::cout << "GENERAL HELP" << std::endl << generalDescription_;
                 return;

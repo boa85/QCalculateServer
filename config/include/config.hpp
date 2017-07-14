@@ -1,9 +1,7 @@
 //
 // Created by boa on 11.07.17.
 //
-
-#ifndef QCALCULATESERVER_CONFIG_HPP
-#define QCALCULATESERVER_CONFIG_HPP
+#pragma once
 
 #include <string>
 
@@ -32,5 +30,3 @@ namespace calc_server {
     }
 }
 
-
-#endif //QCALCULATESERVER_CONFIG_HPP

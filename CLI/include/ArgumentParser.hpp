@@ -1,8 +1,8 @@
 //
 // Created by boa on 11.07.17.
 //
-#pragma once
 
+#pragma once
 #include <boost/program_options.hpp>
 #include <boost/signals2.hpp>
 #include "../../config/include/config.hpp"
@@ -41,4 +41,3 @@ namespace calc_server {
 
     }
 }
-

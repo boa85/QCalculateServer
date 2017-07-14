@@ -9,7 +9,7 @@ namespace calc_server {
             ClientSocket *socket = new ClientSocket(Q_NULLPTR);
             socket->setSocketDescriptor(socketId);
             socketMap_.insert(socketId, socket);
-            connect(this, &TcpServer::calculationsResult, socket, [socket](const QString &res) {
+            connect(this, &TcpServer::calculationsResult, this, [socket](const QString &res) {
                 QByteArray block;
                 QDataStream out(&block, QIODevice::WriteOnly);
                 out.setVersion(QDataStream::Qt_4_3);
@@ -21,7 +21,9 @@ namespace calc_server {
         }
 
         TcpServer::TcpServer(QObject *parent) : QTcpServer(parent) {
-
+            for (auto socket : socketMap_) {
+                socket->close();
+            }
         }
 
         void TcpServer::startListen(std::tuple<LISTEN_ADDRESSES, unsigned int, unsigned int> settings) {
@@ -31,16 +33,24 @@ namespace calc_server {
             setMaxPendingConnections(maxConnections);
             switch (addresses) {
                 case LISTEN_ADDRESSES::ANY:
-                    listen(QHostAddress::Any, port);
+                    if(!listen(QHostAddress::Any, port)) {
+
+                    }
                     break;
                 case LISTEN_ADDRESSES::LOCAL_HOST:
-                    listen(QHostAddress::LocalHost, port);
+                    if(!listen(QHostAddress::LocalHost, port)) {
+
+                    }
                     break;
                 case LISTEN_ADDRESSES::ANY_IPV4:
-                    listen(QHostAddress::AnyIPv4, port);
+                    if(!listen(QHostAddress::AnyIPv4, port)) {
+
+                    }
                     break;
                 case LISTEN_ADDRESSES::ANY_IPV6:
-                    listen(QHostAddress::AnyIPv6, port);
+                    if(!listen(QHostAddress::AnyIPv6, port)) {
+
+                    }
                     break;
                 case LISTEN_ADDRESSES::UNKNOWN:
                     throw std::invalid_argument("unknown addresses value");

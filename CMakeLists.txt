@@ -9,8 +9,8 @@ if (NOT Boost_FOUND)
     message(FATAL_ERROR "Could not find boost!")
 endif ()
 include_directories(${BOOST_INCLUDE_DIRS})
-#set(CMAKE_PREFIX_PATH "/opt/soft/qt/5.8/gcc_64/")#указать путь к  Qt
-set(CMAKE_PREFIX_PATH "/opt/qt/5.8/gcc_64/")#указать путь к  Qt
+set(CMAKE_PREFIX_PATH "/opt/soft/qt/5.8/gcc_64/")#указать путь к  Qt
+#set(CMAKE_PREFIX_PATH "/opt/qt/5.8/gcc_64/")#указать путь к  Qt
 set(CMAKE_AUTOMOC ON)#Q_OBJECT - для использования в проекте механизма сигналов и слотов.
 find_package(Qt5Core REQUIRED)# по аналогии с *.pro QT += gui core
 find_package(Qt5Network REQUIRED)#Сеть

@@ -12,9 +12,6 @@ namespace calc_server {
 #define OR ||
 #define AND &&
 
-        const std::string MAX_PENDING_CONNECTIONS = "max_con";
-        const std::string PORT = "port";
-        const std::string ADDRESSES = "addresses";
         const std::string ANY = "any";
         const std::string LOCAL_HOST = "localhost";
         const std::string ANY_IPV4 = "anyv4";
@@ -24,14 +21,14 @@ namespace calc_server {
             ANY,
             LOCAL_HOST,
             ANY_IPV4,
-            ANY_IPV6,
-            UNKNOWN
+            ANY_IPV6
         };
         /**
          * @brief MIN_PORT - All ports < 1000 were used by the OS and not available
          */
         const unsigned int MIN_PORT = 1001;
-
+        const unsigned int DEFAULT_PORT = 7777;
+        const unsigned int DEFAULT_MAX_PENDING_CONNECTIONS = 30;//see official documentation for QTcpServer
     }
 }
 

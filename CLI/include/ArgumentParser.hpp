@@ -39,5 +39,5 @@ namespace calc_server {
             void startParsing(int argc, char *argv[]);
         };
 
-    }
-}
+    }//namespace parser
+}//namespace calc_server

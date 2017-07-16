@@ -27,6 +27,6 @@ namespace calc_server {
         const unsigned int MIN_PORT = 1001;
         const unsigned int DEFAULT_PORT = 7777;
         const unsigned int DEFAULT_MAX_PENDING_CONNECTIONS = 30;//see official documentation for QTcpServer
-    }
-}
+    }//namespace config
+}//namespace calc_server {
 

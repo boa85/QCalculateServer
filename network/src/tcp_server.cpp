@@ -7,6 +7,7 @@ namespace calc_server {
     namespace network {
 
         void TcpServer::incomingConnection(qintptr socketId) {
+            qDebug() << "new connection";
             ClientSocket *socket = new ClientSocket(Q_NULLPTR);
             socket->setSocketDescriptor(socketId);
             socketMap_.insert(socketId, socket);
@@ -47,12 +48,13 @@ namespace calc_server {
                     address = QHostAddress::AnyIPv6;
                     break;
             }
-            listen(address, (quint16) port) ? qDebug() << QString("server started port %1").arg(serverPort()) :
+            listen(address, (quint16) port) ?
+            qDebug() << QString("server started port %1").arg(serverPort()) :
             qWarning() << QString("Failed to bind to port, %1 ").arg(errorString()) << "\n";
         }
 
         TcpServer::~TcpServer() {
 
         }
-    }
-}
+    }//namespace network
+}//namespace calc_server

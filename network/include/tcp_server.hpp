@@ -28,6 +28,6 @@ namespace calc_server {
 
             QMap<quintptr, ClientSocket *> socketMap_;
         };
-    }
-}
+    }//namespace network
+}//namespace calc_server
 

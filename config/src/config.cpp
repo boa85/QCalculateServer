@@ -6,5 +6,5 @@ namespace calc_server {
     namespace config {
 
 
-    }
-}
+    }//namespace config
+}//namespace calc_server

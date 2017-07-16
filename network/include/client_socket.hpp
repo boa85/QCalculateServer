@@ -38,6 +38,7 @@ namespace calc_server {
 
         public slots:
 
+            void sendResult(const QString &result);
         private slots:
             void readClient();
         private:
@@ -45,6 +46,6 @@ namespace calc_server {
             QString socketName_;
         };
 
-    }
-}
+    }//namespace network
+}//namespace calc_server
 

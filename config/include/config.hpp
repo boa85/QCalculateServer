@@ -9,6 +9,10 @@ namespace calc_server {
     namespace config {
 #define OR ||
 #define AND &&
+        enum CalculationStatus {
+            SUCCESS = 0,
+            FAILED = 1
+        };
 
         const std::string ANY = "any";
         const std::string LOCAL_HOST = "localhost";

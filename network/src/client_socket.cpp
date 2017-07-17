@@ -1,8 +1,11 @@
 //
 
 #include "../include/client_socket.hpp"
+#include "../../config/include/config.hpp"
 #include <QDataStream>
 
+using namespace calc_server;
+using namespace config;
 namespace calc_server {
     namespace network {
 
@@ -34,7 +37,7 @@ namespace calc_server {
             in >> name;
             QStringList data;
             in >> data;
-            sendResult("0");
+            sendResult("ok");
             qDebug() << "name = " << name << " data = " << data;
         }
 
@@ -42,7 +45,7 @@ namespace calc_server {
             QByteArray block;
             QDataStream out(&block, QIODevice::WriteOnly);
             out.setVersion(QDataStream::Qt_4_3);
-            out << quint16(0) << 0 << result;
+            out << quint16(0) << CalculationStatus::SUCCESS << result;
             out.device()->seek(0);
             out << quint16(block.size() - sizeof(quint16));
             write(block);

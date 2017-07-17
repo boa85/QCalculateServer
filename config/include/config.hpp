@@ -7,8 +7,6 @@
 
 namespace calc_server {
     namespace config {
-#define OR ||
-#define AND &&
         enum CalculationStatus {
             SUCCESS = 0,
             FAILED = 1
@@ -19,6 +17,7 @@ namespace calc_server {
         const std::string ANY_IPV4 = "anyv4";
         const std::string ANY_IPV6 = "anyv6";
         const std::string HELP = "help";
+        const std::string START = "start";
         enum class LISTEN_ADDRESSES {
             ANY,
             LOCAL_HOST,

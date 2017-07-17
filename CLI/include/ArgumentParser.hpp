@@ -22,14 +22,16 @@ namespace calc_server {
             ArgumentParser(int argc, char *argv[], QObject *parent = Q_NULLPTR);
 
             virtual ~ArgumentParser();
-
+            /**
+             *
+             * @return
+             */
              std::tuple<LISTEN_ADDRESSES, unsigned ,unsigned > getServerConfig() {
                  return std::make_tuple(listenAddresses_, port_, maxPendingConnections_);
              }
 
         private:
             po::options_description generalDescription_;
-            po::options_description serverDesc_;
             std::string taskType_;
             std::string addresses_;
             LISTEN_ADDRESSES listenAddresses_;

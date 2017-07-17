@@ -25,21 +25,25 @@ namespace calc_server {
                     ("help,h", "server options: listen addresses, port, max pending connections\n"
                             "e.g ./QCalculateServer -t start -p 7777 -a any -m 30")
                     ("type,t", po::value<std::string>(&taskType_), "start")
-                    ("addresses,a", po::value<std::string>(&addresses_), "listen addresses: any, anyv4, anyv6, localhost")
-                    ("port,p", po::value<unsigned>(&port_), " listen port: >= 1001, by default = 7777 ")
-                    ("max,m", po::value<unsigned>(&maxPendingConnections_), "max pending connections: by default = 30");
+                    ("addresses,a", po::value<std::string>(&addresses_),
+                     "listen addresses: any, anyv4, anyv6, localhost")
+                    ("port,p", po::value<unsigned>(&port_),
+                     " listen port: >= 1001, by default = 7777 ")
+                    ("max,m", po::value<unsigned>(&maxPendingConnections_),
+                     "max pending connections: by default = 30");
+
         }
 
         void ArgumentParser::startParsing(int argc, char *argv[]) {
             po::variables_map vm;
-            po::parsed_options parsed = po::command_line_parser(argc, argv).options(generalDescription_).allow_unregistered().run();
+            po::parsed_options parsed =
+                    po::command_line_parser(argc, argv).
+                            options(generalDescription_).
+                            allow_unregistered().run();
             po::store(parsed, vm);
             po::notify(vm);
-
-
-            if (taskType_ == "start") {
+            if (taskType_ == config::START) {
                 po::store(po::parse_command_line(argc, argv, generalDescription_), vm);
-
                 if (addresses_ == config::ANY) {
                     listenAddresses_ = LISTEN_ADDRESSES::ANY;
                 } else if (addresses_ == config::ANY_IPV4) {
@@ -61,9 +65,11 @@ namespace calc_server {
                 if (maxPendingConnections_ <= 0) {
                     maxPendingConnections_ = config::DEFAULT_MAX_PENDING_CONNECTIONS;
                 }
-            } else {
+            } else if (taskType_ == config::HELP) {
                 std::cout << "GENERAL HELP" << std::endl << generalDescription_;
                 return;
+            } else {
+                std::cout << "unknown argument, see help " << std::endl << generalDescription_;
             }
         }
     }//namespace parser

@@ -22,7 +22,7 @@ set(SOURCE_FILES main.cpp CLI/src/ArgumentParser.cpp
         network/src/tcp_server.cpp
         network/include/tcp_server.hpp
         network/src/client_socket.cpp
-        network/include/client_socket.hpp)
+        network/include/client_socket.hpp calculator/src/calculator.cpp calculator/include/calculator.hpp)
 add_executable(QCalculateServer ${SOURCE_FILES})
 target_link_libraries(QCalculateServer Qt5::Core Qt5::Network
         ${Boost_LIBRARIES})# с которыми будем линковать бинарник

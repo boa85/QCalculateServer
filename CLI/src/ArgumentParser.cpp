@@ -35,13 +35,13 @@ namespace calc_server {
         }
 
         void ArgumentParser::startParsing(int argc, char *argv[]) {
-            po::variables_map vm;
-            po::parsed_options parsed =
+            po::variables_map vm;//
+            po::parsed_options parsed =//msgic
                     po::command_line_parser(argc, argv).
                             options(generalDescription_).
                             allow_unregistered().run();
-            po::store(parsed, vm);
-            po::notify(vm);
+            po::store(parsed, vm);//more magic
+            po::notify(vm);//even more magic
             if (taskType_ == config::START) {
                 po::store(po::parse_command_line(argc, argv, generalDescription_), vm);
                 if (addresses_ == config::ANY) {
@@ -56,16 +56,16 @@ namespace calc_server {
                     qWarning() << QString("unknown value for listening to hosts, set default value ANY");
                     listenAddresses_ = LISTEN_ADDRESSES::ANY;
                 }
-                if (port_ < MIN_PORT) {
+                if (port_ < MIN_PORT) {//Evidently
                     qWarning() << QString("All ports less than 1000 "
                                                   "are used by the operating system,"
                                                   " set default value %1").arg(config::DEFAULT_PORT);
                     port_ = config::DEFAULT_PORT;
                 }
-                if (maxPendingConnections_ <= 0) {
+                if (maxPendingConnections_ <= 0) {//evidently
                     maxPendingConnections_ = config::DEFAULT_MAX_PENDING_CONNECTIONS;
                 }
-            } else if (taskType_ == config::HELP) {
+            } else if (taskType_ == config::HELP) {//evedently
                 std::cout << "GENERAL HELP" << std::endl << generalDescription_;
                 return;
             } else {

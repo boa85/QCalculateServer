@@ -36,7 +36,7 @@ namespace calc_server {
 
         void ArgumentParser::startParsing(int argc, char *argv[]) {
             po::variables_map vm;//
-            po::parsed_options parsed =//msgic
+            po::parsed_options parsed =//magic
                     po::command_line_parser(argc, argv).
                             options(generalDescription_).
                             allow_unregistered().run();
@@ -44,7 +44,7 @@ namespace calc_server {
             po::notify(vm);//even more magic
             if (taskType_ == config::START) {
                 po::store(po::parse_command_line(argc, argv, generalDescription_), vm);
-                if (addresses_ == config::ANY) {
+                if (addresses_ == config::ANY) {//check listen addresses
                     listenAddresses_ = LISTEN_ADDRESSES::ANY;
                 } else if (addresses_ == config::ANY_IPV4) {
                     listenAddresses_ = LISTEN_ADDRESSES ::ANY_IPV4;
@@ -52,7 +52,7 @@ namespace calc_server {
                     listenAddresses_ = LISTEN_ADDRESSES::ANY_IPV6;
                 } else if (addresses_ == config::LOCAL_HOST) {
                     listenAddresses_ = LISTEN_ADDRESSES::LOCAL_HOST;
-                } else {
+                } else {//set default value
                     qWarning() << QString("unknown value for listening to hosts, set default value ANY");
                     listenAddresses_ = LISTEN_ADDRESSES::ANY;
                 }
@@ -65,7 +65,7 @@ namespace calc_server {
                 if (maxPendingConnections_ <= 0) {//evidently
                     maxPendingConnections_ = config::DEFAULT_MAX_PENDING_CONNECTIONS;
                 }
-            } else if (taskType_ == config::HELP) {//evedently
+            } else if (taskType_ == config::HELP) {//evidently
                 std::cout << "GENERAL HELP" << std::endl << generalDescription_;
                 return;
             } else {

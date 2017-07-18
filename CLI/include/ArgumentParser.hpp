@@ -48,7 +48,7 @@ namespace calc_server {
              */
             std::string addresses_;
             /**
-             * @brief listenAddresses_
+             * @brief listenAddresses_ - list of listen addresses
              */
             LISTEN_ADDRESSES listenAddresses_;
             /**
@@ -61,7 +61,7 @@ namespace calc_server {
             unsigned maxPendingConnections_;
 
             /**
-             * @brief initDescriptions
+             * @brief initDescriptions - init boost program options descriptions
              */
             void initDescriptions();
 
@@ -71,7 +71,7 @@ namespace calc_server {
              * @param argv  - arguments
              */
             void startParsing(int argc, char *argv[]);
-        };
+        };//class ArgumentParser
 
     }//namespace parser
 }//namespace calc_server

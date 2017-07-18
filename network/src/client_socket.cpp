@@ -3,7 +3,7 @@
 #include "../include/client_socket.hpp"
 #include "../../config/include/config.hpp"
 #include <QDataStream>
-
+#include <QDateTime>
 using namespace calc_server;
 using namespace config;
 namespace calc_server {
@@ -15,8 +15,8 @@ namespace calc_server {
         }
 
         ClientSocket::~ClientSocket() {
-            auto str = "Client\t" + socketName_ + "\thas disconnected";
-            emit disconnects(str);
+            close();
+            qDebug() << QTime::currentTime().toString() << "Client \t " + socketName_ + " \t has disconnected";
         }
 
         void ClientSocket::readClient() {
@@ -39,8 +39,8 @@ namespace calc_server {
             QStringList data;
             in >> data;
             emit newCalculateExpression(data);
-            sendResult("ok");
             qDebug() << "name = " << name << " data = " << data;
+            nextBlockSize_ = 0;
         }
 
         void ClientSocket::sendResult(const QString &result) {

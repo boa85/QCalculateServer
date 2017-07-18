@@ -16,7 +16,7 @@ namespace calc_server {
                         QByteArray block;
                         QDataStream out(&block, QIODevice::WriteOnly);
                         out.setVersion(QDataStream::Qt_4_3);
-                        out << quint16(0) << res;
+                        out << quint16(0) << status << res;
                         out.device()->seek(0);
                         out << quint16(block.size() - sizeof(quint16));
                         socket->write(block);
@@ -52,9 +52,9 @@ namespace calc_server {
         }
 
         TcpServer::~TcpServer() {
-//            for (auto socket : findChildren<ClientSocket *>()) {
-//                socket->close();
-//            }
+            for (auto socket : findChildren<ClientSocket *>()) {
+                socket->close();
+            }
         }
     }//namespace network
 }//namespace calc_server

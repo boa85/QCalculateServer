@@ -3,14 +3,11 @@
 #include "network/include/tcp_server.hpp"
 #include "calculator/include/calculator.hpp"
 #include <QCoreApplication>
-#include <iostream>
-#include <QDebug>
 using namespace calc_server;
 using namespace parser;
 using namespace network;
 using namespace calculator;
 int main(int argc, char *argv[]) {
-
     QCoreApplication application(argc, argv);
     ArgumentParser argumentParser(argc, argv);
     TcpServer *server = new TcpServer;

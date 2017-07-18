@@ -24,17 +24,13 @@ namespace calc_server {
             void calculateResult(const CalculationStatus status, const QString &result);
 
         private:
-            QStack<double> stack_;
-            QStack<char> operatorStack_;
 
-            int getPrioritet(const char operator_);
+            int getPriority(const char operator_);
 
             bool isOperator(const char operator_);
+
+            QStringList convertToRpn(const QStringList &expression);
         };
 
     }
 }
-
-
-
-

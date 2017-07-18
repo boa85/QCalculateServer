@@ -19,7 +19,8 @@ namespace calc_server {
         signals:
 
             void calculationsResult(const CalculationStatus status,const QString &result);
-            void newCalculateExpression(const QString &expression);
+
+            void newCalculateExpression(const QStringList &expression);
         public slots:
 
             void startListen(std::tuple<LISTEN_ADDRESSES, unsigned int, unsigned int> settings);
@@ -27,6 +28,8 @@ namespace calc_server {
             void incomingConnection(qintptr socketId);
 
             QMap<quintptr, ClientSocket *> socketMap_;
+
+
         };
     }//namespace network
 }//namespace calc_server

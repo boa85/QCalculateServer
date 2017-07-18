@@ -8,24 +8,22 @@ namespace calc_server {
 
         void TcpServer::incomingConnection(qintptr socketId) {
             qDebug() << "new connection";
-            ClientSocket *socket = new ClientSocket(Q_NULLPTR);
+            ClientSocket *socket = new ClientSocket(this);
             socket->setSocketDescriptor(socketId);
-            socketMap_.insert(socketId, socket);
-            connect(this, &TcpServer::calculationsResult, this, [socket](const QString &res) {
-                QByteArray block;
-                QDataStream out(&block, QIODevice::WriteOnly);
-                out.setVersion(QDataStream::Qt_4_3);
-                out << quint16(0) << res;
-                out.device()->seek(0);
-                out << quint16(block.size() - sizeof(quint16));
-                socket->write(block);
-            });
+            connect(socket, &ClientSocket::newCalculateExpression, this, &TcpServer::newCalculateExpression);
+            connect(this, &TcpServer::calculationsResult, this,
+                    [socket](const CalculationStatus status, const QString &res) {
+                        QByteArray block;
+                        QDataStream out(&block, QIODevice::WriteOnly);
+                        out.setVersion(QDataStream::Qt_4_3);
+                        out << quint16(0) << res;
+                        out.device()->seek(0);
+                        out << quint16(block.size() - sizeof(quint16));
+                        socket->write(block);
+                    });
         }
 
         TcpServer::TcpServer(QObject *parent) : QTcpServer(parent) {
-            for (auto socket : socketMap_) {
-                socket->close();
-            }
         }
 
         void TcpServer::startListen(std::tuple<LISTEN_ADDRESSES, unsigned int, unsigned int> settings) {
@@ -54,7 +52,9 @@ namespace calc_server {
         }
 
         TcpServer::~TcpServer() {
-
+//            for (auto socket : findChildren<ClientSocket *>()) {
+//                socket->close();
+//            }
         }
     }//namespace network
 }//namespace calc_server

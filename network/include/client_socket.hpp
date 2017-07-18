@@ -32,7 +32,7 @@ namespace calc_server {
             void setSocketName(const QString &socketName) { socketName_ = socketName; }
         signals:
 
-            void newCalculateExpression(const QString &expression);
+            void newCalculateExpression(QStringList expression);
 
             void disconnects(const QString &name);
 

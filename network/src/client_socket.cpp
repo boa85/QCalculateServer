@@ -20,7 +20,7 @@ namespace calc_server {
         }
 
         void ClientSocket::readClient() {
-            qDebug() << "new connection";
+            qDebug() << "readClient";
             QDataStream in(this);
             in.setVersion(QDataStream::Qt_4_8);
             if (nextBlockSize_ == 0) {
@@ -31,12 +31,15 @@ namespace calc_server {
 
             }
             if (bytesAvailable() < nextBlockSize_) {
+                qDebug() << QString("bytesAvailable =  %1 %2").arg(bytesAvailable()).arg(errorString());
                 return;
             }
             QString name;
             in >> name;
+            setSocketName(name);
             QStringList data;
             in >> data;
+            emit newCalculateExpression(data);
             sendResult("ok");
             qDebug() << "name = " << name << " data = " << data;
         }

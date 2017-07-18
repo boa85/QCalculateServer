@@ -9,7 +9,7 @@ using namespace config;
 namespace calc_server {
     namespace network {
 
-        ClientSocket::ClientSocket(QObject *parent) : QTcpSocket(parent) {
+        ClientSocket::ClientSocket(QObject *parent) : QTcpSocket(parent), nextBlockSize_(0) {
             connect(this, &ClientSocket::readyRead, this, &ClientSocket::readClient);
             connect(this, &QAbstractSocket::disconnected, this, &QObject::deleteLater);//see Qt official documentation
         }
@@ -22,7 +22,7 @@ namespace calc_server {
         void ClientSocket::readClient() {
             qDebug() << "readClient";
             QDataStream in(this);
-            in.setVersion(QDataStream::Qt_4_8);
+            in.setVersion(QDataStream::Qt_4_3);
             if (nextBlockSize_ == 0) {
                 if (bytesAvailable() < sizeof(quint16)) {
                     return;
@@ -31,7 +31,6 @@ namespace calc_server {
 
             }
             if (bytesAvailable() < nextBlockSize_) {
-                qDebug() << QString("bytesAvailable =  %1 %2").arg(bytesAvailable()).arg(errorString());
                 return;
             }
             QString name;

@@ -4,7 +4,7 @@
 
 #include <QObject>
 #include "../../config/include/config.hpp"
-
+#include <QStack>
 using namespace calc_server;
 using namespace config;
 namespace calc_server {
@@ -22,6 +22,10 @@ namespace calc_server {
         Q_SIGNALS:
 
             void calculateResult(const CalculationStatus status, const QString &result);
+
+        private:
+            QStack stack_;
+            QStack operatorStack_;
         };
 
     }

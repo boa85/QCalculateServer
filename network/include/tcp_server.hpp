@@ -18,8 +18,8 @@ namespace calc_server {
             virtual ~TcpServer();
         signals:
 
-            void calculationsResult(const QString &result);
-
+            void calculationsResult(const CalculationStatus status,const QString &result);
+            void newCalculateExpression(const QString &expression);
         public slots:
 
             void startListen(std::tuple<LISTEN_ADDRESSES, unsigned int, unsigned int> settings);

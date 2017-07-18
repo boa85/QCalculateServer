@@ -57,12 +57,15 @@ namespace calc_server {
                     listenAddresses_ = LISTEN_ADDRESSES::ANY;
                 }
                 if (port_ < MIN_PORT) {//Evidently
-                    qWarning() << QString("All ports less than 1000 "
+                    qWarning() << QString("All ports less than %2 "
                                                   "are used by the operating system,"
-                                                  " set default value %1").arg(config::DEFAULT_PORT);
+                                                  " set default value %1").
+                            arg(config::DEFAULT_PORT).arg(config::MIN_PORT);
                     port_ = config::DEFAULT_PORT;
                 }
                 if (maxPendingConnections_ <= 0) {//evidently
+                    qWarning() << QString("non correctly value max pending connections, set default value %1").
+                            arg(config::DEFAULT_MAX_PENDING_CONNECTIONS);
                     maxPendingConnections_ = config::DEFAULT_MAX_PENDING_CONNECTIONS;
                 }
             } else if (taskType_ == config::HELP) {//evidently

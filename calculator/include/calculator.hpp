@@ -28,7 +28,11 @@ namespace calc_server {
             int getPriority(const char operator_);
 
             bool isOperator(const char operator_);
-
+            /**
+             * @brief convertToRpn - convert expression in infix notation to Reverse Polish notation
+             * @param expression expression in infix notation
+             * @return expression in Reverse Polish notation
+             */
             QStringList convertToRpn(const QStringList &expression);
         };
 

@@ -1,0 +1,15 @@
+digraph "/home/boa/CLionProjects/my/QCalculateServer/network/src" {
+  bgcolor=transparent;
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_c901c14b65aa229498a52b725b3d4a2c {
+    graph [ bgcolor="#ddddee", pencolor="black", label="network" fontname="Helvetica", fontsize="10", URL="dir_c901c14b65aa229498a52b725b3d4a2c.html"]
+  dir_2351834354bc8905119ebfe596a90f94 [shape=box, label="src", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_2351834354bc8905119ebfe596a90f94.html"];
+  }
+  dir_9cab7fff190c08877a2347b5fd32e1ed [shape=box label="include" URL="dir_9cab7fff190c08877a2347b5fd32e1ed.html"];
+  dir_9f351d46ce3cc29445a41dc3a31e6919 [shape=box label="config" color="red" URL="dir_9f351d46ce3cc29445a41dc3a31e6919.html"];
+  dir_9cab7fff190c08877a2347b5fd32e1ed->dir_9f351d46ce3cc29445a41dc3a31e6919 [headlabel="1", labeldistance=1.5 headhref="dir_000016_000012.html"];
+  dir_2351834354bc8905119ebfe596a90f94->dir_9cab7fff190c08877a2347b5fd32e1ed [headlabel="2", labeldistance=1.5 headhref="dir_000017_000016.html"];
+  dir_2351834354bc8905119ebfe596a90f94->dir_9f351d46ce3cc29445a41dc3a31e6919 [headlabel="1", labeldistance=1.5 headhref="dir_000017_000012.html"];
+}

@@ -1,0 +1,19 @@
+digraph "/home/boa/CLionProjects/my/QCalculateServer/cmake-build-debug" {
+  bgcolor=transparent;
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_95e29a8b8ee7c54052c171a88bb95675 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_95e29a8b8ee7c54052c171a88bb95675.html"];
+    dir_95e29a8b8ee7c54052c171a88bb95675 [shape=plaintext label="cmake-build-debug"];
+    dir_f89abcb304c928c7d889aa5625570de5 [shape=box label="CMakeFiles" color="red" fillcolor="white" style="filled" URL="dir_f89abcb304c928c7d889aa5625570de5.html"];
+    dir_da1d95858cac52b3af8456d3aa7d28dc [shape=box label="QCalculateServer_automoc.dir" color="black" fillcolor="white" style="filled" URL="dir_da1d95858cac52b3af8456d3aa7d28dc.html"];
+  }
+  dir_46ec98a0eaec3dba456c3e63c7772753 [shape=box label="calculator" color="red" URL="dir_46ec98a0eaec3dba456c3e63c7772753.html"];
+  dir_e126f7b990f7130c1196f46e29e55d5b [shape=box label="CLI" color="red" URL="dir_e126f7b990f7130c1196f46e29e55d5b.html"];
+  dir_c901c14b65aa229498a52b725b3d4a2c [shape=box label="network" color="red" URL="dir_c901c14b65aa229498a52b725b3d4a2c.html"];
+  dir_da1d95858cac52b3af8456d3aa7d28dc->dir_46ec98a0eaec3dba456c3e63c7772753 [headlabel="1", labeldistance=1.5 headhref="dir_000011_000000.html"];
+  dir_da1d95858cac52b3af8456d3aa7d28dc->dir_e126f7b990f7130c1196f46e29e55d5b [headlabel="1", labeldistance=1.5 headhref="dir_000011_000003.html"];
+  dir_da1d95858cac52b3af8456d3aa7d28dc->dir_c901c14b65aa229498a52b725b3d4a2c [headlabel="2", labeldistance=1.5 headhref="dir_000011_000015.html"];
+  dir_95e29a8b8ee7c54052c171a88bb95675->dir_da1d95858cac52b3af8456d3aa7d28dc [headlabel="4", labeldistance=1.5 headhref="dir_000006_000011.html"];
+}

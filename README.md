@@ -1,6 +1,9 @@
 # QCalculateServer
 Receives from the client expressions in infix notation, and returns the computed result
 instalation:
+
+cd project source dir
+
 mkdir cmake-build-debug
 
 cd cmake-build-debug/
